@@ -1,3 +1,4 @@
+import grid.*;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -17,6 +18,8 @@ public class App extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -41,7 +44,7 @@ public class App extends Application {
         ScheduledThreadPoolExecutor threadPoolExecutor = new ScheduledThreadPoolExecutor(1);
         threadPoolExecutor.scheduleAtFixedRate(() -> {
             if(!isInPause) {
-                grid.model.activation();
+                grid.getModel().activation();
                 grid.repaint();
             }
         }, 0, 50 , TimeUnit.MILLISECONDS);

@@ -1,3 +1,6 @@
+package grid;
+
+import grid.Model;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -19,12 +22,12 @@ public class Grid extends Canvas{
         setFocusTraversable(true);
         setOnMousePressed(this::mousePressed);
         model = new Model(this);
-        model.initialisation(3,8);
+        model.initialisation(3,10);
     }
 
     public void restart(MouseEvent mouseEvent){
         model = new Model(this);
-        model.initialisation(3,6);
+        model.initialisation(3,10);
         getGraphicsContext2D().clearRect(0,0,width, height);
         repaint();
     }
@@ -33,7 +36,7 @@ public class Grid extends Canvas{
         repaint();
     }
 
-    void repaint(){
+    public void repaint(){
         for(int col=0; col<colCount; col++)
             getGraphicsContext2D().strokeLine(0, col*width/colCount, height, col*width/colCount);
         for(int row=0; row<rowCount;row++)
@@ -41,19 +44,13 @@ public class Grid extends Canvas{
 
     }
 
-    void paint(int row, int col){
-        getGraphicsContext2D().setFill(Color.WHITE);
-        getGraphicsContext2D().fillRect(row*height/rowCount,col*width/colCount,height/rowCount,width/colCount);
+    public Model getModel() {
+        return model;
     }
-
-    public void paintFF(int row, int col) {
-        getGraphicsContext2D().setFill(Color.BLUE);
-        getGraphicsContext2D().fillOval(row*height/rowCount,col*width/colCount,height/rowCount,width/colCount);
+    public double getColCount() {
+        return colCount;
     }
-
-    public void paintFire(int row, int col) {
-        getGraphicsContext2D().setFill(Color.RED);
-        getGraphicsContext2D().fillRect(row*height/rowCount,col*width/colCount,height/rowCount,width/colCount);
+    public double getRowCount() {
+        return rowCount;
     }
-
 }
