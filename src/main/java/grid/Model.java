@@ -1,8 +1,6 @@
 package grid;
 
-import entity.Entities;
-import entity.Fires;
-import entity.FireFighters;
+import entity.*;
 
 import java.util.List;
 import java.util.*;
@@ -24,10 +22,10 @@ public class Model {
 
   public void initialisation(int fireNumber, int fireFighterNumber) {
     entities.clear();
-    Fires fires =new Fires(grid,fireNumber);
-    Entities fireFighter = new FireFighters(grid , fireFighterNumber, fires);
-    entities.add(fires);
-    entities.add(fireFighter);
+    Fires fire =new Fires(grid,fireNumber);
+    Entities fireFighters = new FireFighters(grid , fireFighterNumber, fire);
+    entities.add(fire);
+    entities.add(fireFighters);
 
     for (Entities entity: entities){
       entity.initialisation();

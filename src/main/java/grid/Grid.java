@@ -1,9 +1,7 @@
 package grid;
 
-import grid.Model;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 
 public class Grid extends Canvas{
     double width;
