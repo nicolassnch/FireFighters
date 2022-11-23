@@ -2,6 +2,7 @@ package entity;
 
 import Util.Position;
 import grid.Grid;
+import grid.Model;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -16,7 +17,9 @@ public class Fires implements Entities{
 
     Grid grid;
     int number_Entities;
-    public Fires(Grid grid, int number_Entities){
+    Model model;
+    public Fires(Grid grid, int number_Entities, Model model){
+        this.model = model;
         this.grid = grid;
         this.number_Entities = number_Entities;
     }

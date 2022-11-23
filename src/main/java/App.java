@@ -44,7 +44,7 @@ public class App extends Application {
         ScheduledThreadPoolExecutor threadPoolExecutor = new ScheduledThreadPoolExecutor(1);
         threadPoolExecutor.scheduleAtFixedRate(() -> {
             if(!isInPause) {
-                grid.getModel().activation();
+                grid.update();
                 grid.repaint();
             }
         }, 0, 50 , TimeUnit.MILLISECONDS);

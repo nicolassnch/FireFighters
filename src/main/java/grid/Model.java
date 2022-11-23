@@ -10,8 +10,13 @@ public class Model {
   Grid grid;
   double colCount;
   double rowCount;
+
   int step = 0;
+
   List<Entities> entities = new ArrayList<>();
+
+  Fires fires;
+  FireFighters fireFighters;
 
   public Model(Grid grid) {
     this.grid = grid;
@@ -22,9 +27,9 @@ public class Model {
 
   public void initialisation(int fireNumber, int fireFighterNumber) {
     entities.clear();
-    Fires fire =new Fires(grid,fireNumber);
-    Entities fireFighters = new FireFighters(grid , fireFighterNumber, fire);
-    entities.add(fire);
+    this.fires =new Fires(grid,fireNumber,this);
+    this.fireFighters=new FireFighters(grid , fireFighterNumber,this);
+    entities.add(fires);
     entities.add(fireFighters);
 
     for (Entities entity: entities){
@@ -47,8 +52,7 @@ public class Model {
   }
 
 
-
-
-
-
+  public Fires getFires() {
+    return fires;
+  }
 }

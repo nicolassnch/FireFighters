@@ -2,6 +2,7 @@ package entity;
 
 import Util.Position;
 import grid.Grid;
+import grid.Model;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -12,13 +13,13 @@ public class FireFighters implements Entities{
 
     List<Position> fireFighters_Position = new ArrayList<>();
     List<Position> new_Position;
-    Fires fires;
     Grid grid;
     int number_Entities;
-    public FireFighters(Grid grid, int number_Entities ,Fires fires){
+    Model model;
+    public FireFighters(Grid grid, int number_Entities , Model model){
+        this.model = model;
         this.grid = grid;
         this.number_Entities = number_Entities;
-        this.fires = fires;
     }
 
 
@@ -54,7 +55,7 @@ public class FireFighters implements Entities{
             firstMove.put(initialMove, initialMove);
         while (!toVisit.isEmpty()) {
             Position current = toVisit.poll();
-            if (fires.get_Fires_Position().contains(current))
+            if (model.getFires().get_Fires_Position().contains(current))
                 return firstMove.get(current);
             for (Position adjacent : next_Position_Available(current)) {
                 if (seen.contains(adjacent)) continue;
@@ -68,10 +69,10 @@ public class FireFighters implements Entities{
 
     private Position activate_Firefighter(Position position) {
         Position randomPosition = step_Toward_Fire(position);
-        List<Position> nextFires = next_Position_Available(randomPosition).stream().filter(fires.get_Fires_Position()::contains).toList();
-        fires.extinguish(randomPosition);
+        List<Position> nextFires = next_Position_Available(randomPosition).stream().filter(model.getFires().get_Fires_Position()::contains).toList();
+        model.getFires().extinguish(randomPosition);
         for (Position fire : nextFires)
-            this.fires.extinguish(fire);
+            model.getFires().extinguish(fire);
         return randomPosition;
     }
 
@@ -79,10 +80,6 @@ public class FireFighters implements Entities{
         fireFighters_Position.add(position);
     }
 
-
-    public void remove_Position_to_FireFighters_Position(Position position){
-        fireFighters_Position.remove(position);
-    }
 
     public void set_FireFighters_Position(List<Position> entitys_Position) {
         this.fireFighters_Position = entitys_Position;
