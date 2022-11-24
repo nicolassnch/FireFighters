@@ -27,8 +27,8 @@ public class Model {
 
   public void initialisation(int fireNumber, int fireFighterNumber) {
     entities.clear();
-    this.fires =new Fires(grid,fireNumber,this);
-    this.fireFighters=new FireFighters(grid , fireFighterNumber,this);
+    this.fires =new Fires(grid,fireNumber);
+    this.fireFighters=new FireFighters(grid , fireFighterNumber,fires);
     entities.add(fires);
     entities.add(fireFighters);
 
@@ -42,13 +42,9 @@ public class Model {
 
   public void activation() {
     for (Entities entity : entities){
-      if (entity.isFire() && step % 2 != 0) {
-        continue;
-      }
       entity.activation();
     }
     step++;
-
   }
 
 

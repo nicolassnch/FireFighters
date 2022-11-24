@@ -1,7 +1,10 @@
 package grid;
 
+import entity.Entities;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 public class Grid extends Canvas{
     double width;
@@ -9,7 +12,7 @@ public class Grid extends Canvas{
     double colCount;
     double rowCount;
     Model model;
-
+    VisitorPaint visitorPaint;
 
     public Grid(int width, int height, int colCount, int rowCount) {
         super(width,height);
@@ -19,8 +22,10 @@ public class Grid extends Canvas{
         this.rowCount = rowCount;
         setFocusTraversable(true);
         setOnMousePressed(this::mousePressed);
+        this.visitorPaint = new VisitorPaint(this);
         model = new Model(this);
         model.initialisation(3,10);
+
     }
 
     public void restart(MouseEvent mouseEvent){
@@ -41,11 +46,18 @@ public class Grid extends Canvas{
             getGraphicsContext2D().strokeLine(row*height/rowCount,0,row*height/rowCount, width);
     }
 
-    public void update(){
-        model.activation();
+
+    public void paintEntitties(){
+        for (Entities entities:model.entities){
+            entities.accept(visitorPaint);
+        }
     }
 
-
+    public void paint(){
+        getGraphicsContext2D().clearRect(0,0,width,height);
+        paintEntitties();
+        repaint();
+    }
 
 
 
