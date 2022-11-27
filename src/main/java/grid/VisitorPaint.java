@@ -1,5 +1,7 @@
 package grid;
 
+import EntittyManager.MotoeizedFireFighterManager;
+import EntittyManager.WalkFireFighterManager;
 import Util.Position;
 import EntittyManager.FireFightersManager;
 import EntittyManager.FiresManager;
@@ -17,13 +19,13 @@ public class VisitorPaint implements InterfaceVisitorPaint{
     }
 
     @Override
-    public void visitFireFighters(FireFightersManager fireFighters) {
+    public void visitFireFighters(WalkFireFighterManager walkFireFighterManager) {
         grid.getGraphicsContext2D().setFill(Color.BLUE);
         double height = grid.getHeight();
         double width = grid.getWidth();
         double rowCount = grid.getRowCount();
         double colCount = grid.getColCount();
-        for (FireFighterEntity fireFightersIndex : fireFighters.getFireFighters()) {
+        for (FireFighterEntity fireFightersIndex : walkFireFighterManager.getFireFighters()) {
             int row = fireFightersIndex.getPosition().row();
             int col = fireFightersIndex.getPosition().col();
             grid.getGraphicsContext2D().fillOval(row*height/rowCount,col*width/colCount,height/rowCount,width/colCount);
@@ -39,6 +41,20 @@ public class VisitorPaint implements InterfaceVisitorPaint{
         double rowCount = grid.getRowCount();
         double colCount = grid.getColCount();
         for (Entity firesIndex : fires.get_Fires()) {
+            int row = firesIndex.getPosition().row();
+            int col = firesIndex.getPosition().col();
+            grid.getGraphicsContext2D().fillRect(row * height / rowCount, col * width / colCount, height / rowCount, width / colCount);
+        }
+    }
+
+    @Override
+    public void visitMotorizedFireFighters(MotoeizedFireFighterManager motoeizedFireFighterManager) {
+        grid.getGraphicsContext2D().setFill(Color.CADETBLUE);
+        double height = grid.getHeight();
+        double width = grid.getWidth();
+        double rowCount = grid.getRowCount();
+        double colCount = grid.getColCount();
+        for (Entity firesIndex : motoeizedFireFighterManager.getFireFighters()) {
             int row = firesIndex.getPosition().row();
             int col = firesIndex.getPosition().col();
             grid.getGraphicsContext2D().fillRect(row * height / rowCount, col * width / colCount, height / rowCount, width / colCount);

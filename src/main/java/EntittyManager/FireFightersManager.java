@@ -1,14 +1,12 @@
 package EntittyManager;
 
 import Util.Position;
-import entity.Entity;
-import entity.FireEntity;
 import entity.FireFighterEntity;
 import grid.InterfaceVisitorPaint;
 
 import java.util.*;
 
-public class FireFightersManager extends EntityManager {
+public abstract class FireFightersManager extends EntityManager {
 
 
     List<FireFighterEntity> fireFighters = new ArrayList<>();
@@ -21,9 +19,7 @@ public class FireFightersManager extends EntityManager {
         this.fires = fires;
     }
 
-
-
-    private Position step_Toward_Fire(Position position) {
+    protected Position step_Toward_Fire(Position position){
         Queue<Position> toVisit = new LinkedList<>();
         Set<Position> seen = new HashSet<>();
         HashMap<Position,Position> firstMove = new HashMap<>();
@@ -42,18 +38,10 @@ public class FireFightersManager extends EntityManager {
             }
         }
         return position;
-
     }
 
-    private Position activate_Firefighter(Position position) {
-        Position randomPosition = step_Toward_Fire(position);
-        List<Position> nextFires = Position.next_Position_Available(randomPosition,colCount,rowCount);
-        fires.extinguish(fires.contain(randomPosition));
-        for (Position fire : nextFires){
-            fires.extinguish(fires.contain(fire));
-        }
-        return randomPosition;
-    }
+
+    protected abstract Position activate_Firefighter(Position position);
 
 
 
@@ -75,11 +63,11 @@ public class FireFightersManager extends EntityManager {
 
 
     @Override
-    public void accept(InterfaceVisitorPaint visitor) {
-        visitor.visitFireFighters(this);
-    }
+    public abstract void accept(InterfaceVisitorPaint visitor);
 
     public List<FireFighterEntity> getFireFighters() {
         return fireFighters;
     }
+
+
 }

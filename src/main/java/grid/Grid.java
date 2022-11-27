@@ -22,19 +22,19 @@ public class Grid extends Canvas{
         setOnMousePressed(this::mousePressed);
         this.visitorPaint = new VisitorPaint(this);
         model = new Model(this);
-        model.initialisation(3,10);
+        model.initialisation(3,5,4);
 
     }
 
     public void restart(MouseEvent mouseEvent){
         model = new Model(this);
-        model.initialisation(3,10);
+        model.initialisation(3,5,4);
         getGraphicsContext2D().clearRect(0,0,width, height);
         repaint();
     }
     private void mousePressed(MouseEvent mouseEvent) {
         model.activation();
-        repaint();
+        paint();
     }
 
     public void repaint(){
