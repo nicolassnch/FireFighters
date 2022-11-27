@@ -1,10 +1,8 @@
 package grid;
 
-import entity.Entities;
+import EntittyManager.EntityManager;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 
 public class Grid extends Canvas{
     double width;
@@ -48,8 +46,8 @@ public class Grid extends Canvas{
 
 
     public void paintEntitties(){
-        for (Entities entities:model.entities){
-            entities.accept(visitorPaint);
+        for (EntityManager entityManager :model.entityManagerList){
+            entityManager.accept(visitorPaint);
         }
     }
 

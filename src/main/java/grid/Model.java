@@ -1,6 +1,8 @@
 package grid;
 
-import entity.*;
+import EntittyManager.EntityManager;
+import EntittyManager.FireFightersManager;
+import EntittyManager.FiresManager;
 
 import java.util.List;
 import java.util.*;
@@ -11,12 +13,10 @@ public class Model {
   double colCount;
   double rowCount;
 
-  int step = 0;
+  List<EntityManager> entityManagerList = new ArrayList<>();
 
-  List<Entities> entities = new ArrayList<>();
-
-  Fires fires;
-  FireFighters fireFighters;
+  FiresManager fires;
+  FireFightersManager fireFighters;
 
   public Model(Grid grid) {
     this.grid = grid;
@@ -26,13 +26,13 @@ public class Model {
 
 
   public void initialisation(int fireNumber, int fireFighterNumber) {
-    entities.clear();
-    this.fires =new Fires(grid,fireNumber);
-    this.fireFighters=new FireFighters(grid , fireFighterNumber,fires);
-    entities.add(fires);
-    entities.add(fireFighters);
+    entityManagerList.clear();
+    this.fires =new FiresManager(fireNumber,rowCount,colCount);
+    this.fireFighters=new FireFightersManager(fireFighterNumber,rowCount,colCount,fires);
+    entityManagerList.add(fires);
+    entityManagerList.add(fireFighters);
 
-    for (Entities entity: entities){
+    for (EntityManager entity: entityManagerList){
       entity.initialisation();
     }
   }
@@ -41,14 +41,13 @@ public class Model {
 
 
   public void activation() {
-    for (Entities entity : entities){
-      entity.activation();
+    for (EntityManager entity : entityManagerList){
+      entity.activate();
     }
-    step++;
   }
 
 
-  public Fires getFires() {
+  public FiresManager getFires() {
     return fires;
   }
 }

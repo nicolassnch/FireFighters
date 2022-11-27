@@ -1,10 +1,10 @@
 package grid;
 
-import entity.FireFighters;
-import entity.Fires;
+import EntittyManager.FireFightersManager;
+import EntittyManager.FiresManager;
 
 public interface InterfaceVisitorPaint {
-    void visitFireFighters(FireFighters fireFighters);
-    void visitFires(Fires fires);
+    void visitFireFighters(FireFightersManager fireFighters);
+    void visitFires(FiresManager fires);
 
 }
