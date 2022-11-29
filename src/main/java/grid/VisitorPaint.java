@@ -2,6 +2,8 @@ package grid;
 
 import EntittyManager.MotoeizedFireFighterManager;
 import EntittyManager.WalkFireFighterManager;
+import ground.Montain;
+import ground.Road;
 import Util.Position;
 import EntittyManager.FireFightersManager;
 import EntittyManager.FiresManager;
@@ -57,7 +59,33 @@ public class VisitorPaint implements InterfaceVisitorPaint{
         for (Entity firesIndex : motoeizedFireFighterManager.getFireFighters()) {
             int row = firesIndex.getPosition().row();
             int col = firesIndex.getPosition().col();
-            grid.getGraphicsContext2D().fillRect(row * height / rowCount, col * width / colCount, height / rowCount, width / colCount);
+            grid.getGraphicsContext2D().fillOval(row*height/rowCount,col*width/colCount,height/rowCount,width/colCount);
         }
+    }
+
+    @Override
+    public void visitRoad(Road road) {
+        grid.getGraphicsContext2D().setFill(Color.LIGHTSLATEGREY);
+        double height = grid.getHeight();
+        double width = grid.getWidth();
+        double rowCount = grid.getRowCount();
+        double colCount = grid.getColCount();
+        int row = road.getPosition().row();
+        int col = road.getPosition().col();
+        grid.getGraphicsContext2D().fillRect(row * height / rowCount, col * width / colCount, height / rowCount, width / colCount);
+
+    }
+
+    @Override
+    public void visitRoad(Montain montain) {
+        grid.getGraphicsContext2D().setFill(Color.DARKGREY);
+        double height = grid.getHeight();
+        double width = grid.getWidth();
+        double rowCount = grid.getRowCount();
+        double colCount = grid.getColCount();
+        int row = montain.getPosition().row();
+        int col = montain.getPosition().col();
+        grid.getGraphicsContext2D().fillRect(row * height / rowCount, col * width / colCount, height / rowCount, width / colCount);
+
     }
 }

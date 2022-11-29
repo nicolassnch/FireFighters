@@ -1,5 +1,6 @@
 package EntittyManager;
 
+import ground.VisitorGroundInterface;
 import Util.Position;
 import entity.FireFighterEntity;
 import grid.InterfaceVisitorPaint;
@@ -14,8 +15,8 @@ public abstract class FireFightersManager extends EntityManager {
 
     FiresManager fires;
 
-    public FireFightersManager(int numberEntity, double rowCount, double colCount, FiresManager fires){
-        super(numberEntity,rowCount,colCount);
+    public FireFightersManager(int numberEntity, double rowCount, double colCount, FiresManager fires,List<VisitorGroundInterface> visitorGroundInterfaceList){
+        super(numberEntity,rowCount,colCount,visitorGroundInterfaceList);
         this.fires = fires;
     }
 
@@ -40,8 +41,18 @@ public abstract class FireFightersManager extends EntityManager {
         return position;
     }
 
+    protected Position just_One_Step(Position position) {
+        Position randomPosition = step_Toward_Fire(position);
+        List<Position> nextFires = Position.next_Position_Available(randomPosition,colCount,rowCount);
+        fires.extinguish(fires.contain(randomPosition));
+        for (Position fire : nextFires){
+            fires.extinguish(fires.contain(fire));
+        }
+        return randomPosition;
+    }
 
-    protected abstract Position activate_Firefighter(Position position);
+
+
 
 
 
@@ -69,5 +80,6 @@ public abstract class FireFightersManager extends EntityManager {
         return fireFighters;
     }
 
+    protected abstract Position activate_Firefighter(Position position);
 
 }

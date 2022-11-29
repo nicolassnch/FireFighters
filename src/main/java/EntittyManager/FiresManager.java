@@ -1,27 +1,22 @@
 package EntittyManager;
 
 import Util.Position;
-
 import entity.Entity;
 import entity.FireEntity;
 import grid.InterfaceVisitorPaint;
+import ground.VisitorGroundInterface;
 
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class FiresManager extends EntityManager {
     Set<Entity> fires = new HashSet<>();
 
 
-    InterfaceVisitorPaint visitorPaint;
-    public FiresManager(int numberEntity, double rowCount, double colCount){
-        super(numberEntity,rowCount,colCount);
+
+
+    public FiresManager(int numberEntity, double rowCount, double colCount,List<VisitorGroundInterface> visitorGroundInterfaceList) {
+        super(numberEntity, rowCount, colCount,visitorGroundInterfaceList);
     }
-
-
 
 
     public void extinguish(Entity fireEntity) {
@@ -29,15 +24,14 @@ public class FiresManager extends EntityManager {
     }
 
 
-
-
     @Override
     public void activate() {
-        System.out.println(fires.size());
+
+
         if (step % 2 == 0) {
             List<Position> positions = new ArrayList<>();
             for (Entity fireEntity : fires) {
-                positions.addAll(Position.next_Position_Available(fireEntity.getPosition(),colCount,rowCount));
+                positions.addAll(acceptGround(visitorGroundInterfacesList,fireEntity));
             }
             for (Position position : positions) {
                 fires.add(new FireEntity(position));
@@ -48,8 +42,8 @@ public class FiresManager extends EntityManager {
 
     @Override
     public void initialisation() {
-        for (int index = 0; index<= numberEntity ; index++){
-            fires.add(new FireEntity(Position.randomPosition(colCount,rowCount)));
+        for (int index = 0; index <= numberEntity; index++) {
+            fires.add(new FireEntity(Position.randomPosition(colCount, rowCount)));
         }
     }
 
@@ -59,12 +53,39 @@ public class FiresManager extends EntityManager {
         visitor.visitFires(this);
     }
 
+    @Override
+    public List<Position> acceptGround(List<VisitorGroundInterface> visitorGroundInterfacesList,Entity entity) {
+        int numberOfVisitor=visitorGroundInterfacesList.size();
+        List<Position> next_Position_Available_not_final = new ArrayList<>();
+        List<Position> next_Position_Available_Final= new ArrayList<>();
+        HashMap<Position,Integer> number_Of_Occurence=new HashMap<>();
+        for (VisitorGroundInterface visitorGround:visitorGroundInterfacesList){
+            next_Position_Available_not_final.addAll(visitorGround.visitorFireEntity((FireEntity) entity));
+        }
+        for (Position position:next_Position_Available_not_final){
+            if (number_Of_Occurence.containsKey(position)){
+                number_Of_Occurence.put(position,number_Of_Occurence.get(position)+1);
+                continue;
+            }
+            number_Of_Occurence.put(position,1);
+        }
+        for (Map.Entry m : number_Of_Occurence.entrySet()){
+            if (m.getValue().equals(numberOfVisitor)){
+                next_Position_Available_Final.add((Position) m.getKey());
+            }
+        }
 
-    public Set<Entity> get_Fires(){return fires;}
+        return next_Position_Available_Final;
+    }
 
-    public Entity contain(Position position){
-        for (Entity fire:fires){
-            if (fire.getPosition().equals(position) ){
+
+    public Set<Entity> get_Fires() {
+        return fires;
+    }
+
+    public Entity contain(Position position) {
+        for (Entity fire : fires) {
+            if (fire.getPosition().equals(position)) {
                 return fire;
             }
         }

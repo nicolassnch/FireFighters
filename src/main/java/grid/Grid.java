@@ -1,6 +1,7 @@
 package grid;
 
 import EntittyManager.EntityManager;
+import ground.GroundAbstract;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 
@@ -22,13 +23,13 @@ public class Grid extends Canvas{
         setOnMousePressed(this::mousePressed);
         this.visitorPaint = new VisitorPaint(this);
         model = new Model(this);
-        model.initialisation(3,5,4);
+        model.initialisation(5,-1,-1);
 
     }
 
     public void restart(MouseEvent mouseEvent){
         model = new Model(this);
-        model.initialisation(3,5,4);
+        model.initialisation(5,-1,-1);
         getGraphicsContext2D().clearRect(0,0,width, height);
         repaint();
     }
@@ -48,6 +49,9 @@ public class Grid extends Canvas{
     public void paintEntitties(){
         for (EntityManager entityManager :model.entityManagerList){
             entityManager.accept(visitorPaint);
+        }
+        for (GroundAbstract groundInterface:model.groundManager.getGround()){
+            groundInterface.accept(visitorPaint);
         }
     }
 

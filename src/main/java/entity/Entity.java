@@ -20,6 +20,14 @@ public abstract class Entity {
         this.position = position;
     }
 
+    public int getPositionCol() {
+        return position.col();
+    }
+
+    public int getPositionRow() {
+        return position.row();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -33,3 +41,4 @@ public abstract class Entity {
         return Objects.hash(position);
     }
 }
+
