@@ -23,13 +23,13 @@ public class Grid extends Canvas{
         setOnMousePressed(this::mousePressed);
         this.visitorPaint = new VisitorPaint(this);
         model = new Model(this);
-        model.initialisation(5,2,2);
+        model.initialisation(4,0,0,0,3);
 
     }
 
     public void restart(MouseEvent mouseEvent){
         model = new Model(this);
-        model.initialisation(5,2,2);
+        model.initialisation(4,0,0,0,3);
         getGraphicsContext2D().clearRect(2,2,width, height);
         repaint();
     }
@@ -40,7 +40,7 @@ public class Grid extends Canvas{
 
     public void repaint(){
         for(int col=0; col<colCount; col++)
-            getGraphicsContext2D().strokeLine(0, col*width/colCount, height, col*width/colCount);
+            getGraphicsContext2D().strokeLine(4, col*width/colCount, height, col*width/colCount);
         for(int row=0; row<rowCount;row++)
             getGraphicsContext2D().strokeLine(row*height/rowCount,0,row*height/rowCount, width);
     }
@@ -51,7 +51,7 @@ public class Grid extends Canvas{
         groundInterface.accept(visitorPaint);
         }
         for (EntityManager entityManager :model.entityManagerList){
-            entityManager.accept(visitorPaint);
+            entityManager.acceptPaint(visitorPaint);
         }
 
     }

@@ -1,12 +1,11 @@
 package grid;
 
-import entittyManager.MotoeizedFireFighterManager;
-import entittyManager.WalkFireFighterManager;
+import entittyManager.*;
+import entity.CloudEntity;
 import ground.Montain;
 import ground.Road;
+import ground.Rockery;
 import util.Position;
-import entittyManager.FireFightersManager;
-import entittyManager.FiresManager;
 import entity.Entity;
 import entity.FireEntity;
 import entity.FireFighterEntity;
@@ -64,6 +63,33 @@ public class VisitorPaint implements InterfaceVisitorPaint{
     }
 
     @Override
+    public void visitCloud(CloudManager cloudManager) {
+        grid.getGraphicsContext2D().setFill(Color.BLACK);
+        double height = grid.getHeight();
+        double width = grid.getWidth();
+        double rowCount = grid.getRowCount();
+        double colCount = grid.getColCount();
+        for (Entity cloudIndex : cloudManager.getCloudList()) {
+            int row = cloudIndex.getPosition().row();
+            int col = cloudIndex.getPosition().col();
+            grid.getGraphicsContext2D().fillOval(row*height/rowCount,col*width/colCount,height/rowCount,width/colCount);
+        }
+    }
+
+    @Override
+    public void visitRockery(Rockery rockery) {
+        grid.getGraphicsContext2D().setFill(Color.YELLOW);
+        double height = grid.getHeight();
+        double width = grid.getWidth();
+        double rowCount = grid.getRowCount();
+        double colCount = grid.getColCount();
+        int row = rockery.getPosition().row();
+        int col = rockery.getPosition().col();
+        grid.getGraphicsContext2D().fillRect(row * height / rowCount, col * width / colCount, height / rowCount, width / colCount);
+
+    }
+
+    @Override
     public void visitRoad(Road road) {
         grid.getGraphicsContext2D().setFill(Color.LIGHTSLATEGREY);
         double height = grid.getHeight();
@@ -88,4 +114,6 @@ public class VisitorPaint implements InterfaceVisitorPaint{
         grid.getGraphicsContext2D().fillRect(row * height / rowCount, col * width / colCount, height / rowCount, width / colCount);
 
     }
+
+
 }

@@ -1,22 +1,24 @@
 package entittyManager;
 
+import ground.RockeryVisitor;
 import ground.VisitorGroundInterface;
 import util.Position;
 import entity.Entity;
 import entity.FireEntity;
-import entity.FireFighterEntity;
 import grid.InterfaceVisitorPaint;
 
 import java.util.*;
 
 public class FiresManager extends EntityManager {
-    Set<Entity> fires = new HashSet<>();
+    Set<FireEntity> fires = new HashSet<>();
+    RockeryVisitor rockeryVisitor;
 
 
 
 
-    public FiresManager(int numberEntity, double rowCount, double colCount,List<VisitorGroundInterface> visitorGroundInterfaceList) {
+    public FiresManager(int numberEntity, double rowCount, double colCount,List<VisitorGroundInterface> visitorGroundInterfaceList,RockeryVisitor rockeryVisitor) {
         super(numberEntity, rowCount, colCount,visitorGroundInterfaceList);
+        this.rockeryVisitor = rockeryVisitor;
     }
 
 
@@ -27,21 +29,28 @@ public class FiresManager extends EntityManager {
 
     @Override
     public void activate() {
-
-
-        if (step % 2 == 0) {
-            List<Position> positions = new ArrayList<>();
-            for (Entity fireEntity : fires) {
-                positions.addAll(Position.next_Position_Available(fireEntity.getPosition(),colCount,rowCount));
+        List<Position> positions = new ArrayList<>();
+        Set<FireEntity> newFires = new HashSet<>();
+        int moduloStep;
+        for (FireEntity fireEntity : fires){
+            moduloStep=2;
+            if (rockeryVisitor.visitorFireEntityPositionDisponnible(fireEntity)){
+                moduloStep = 4;
             }
-            for (Position position : positions) {
-                FireEntity fireEntity = new FireEntity(position);
-                if (acceptGround(visitorGroundInterfacesList,fireEntity)) {
-                    fires.add(fireEntity);
+            if (fireEntity.getInternalStep() % 2 == 0 ){
+                positions.addAll(Position.next_Position_Available(fireEntity.getPosition(),colCount,rowCount)); //marche pas bien car normalement c'est le feu qui va arriver//
+                for (Position position : positions) {                                                           // sur les rocaille qui mets 4 tour a ce repandre alors que  //
+                    FireEntity newfireEntity = new FireEntity(position);                                        //la c'est un fois dessus que le feu mets 4 tour a ce rependre.//
+                    if (acceptGround(visitorGroundInterfacesList,newfireEntity)) {
+                        newFires.add(newfireEntity);
+                    }
                 }
             }
+
+            fireEntity.incrementInternalStep();
         }
-        step++;
+
+        fires.addAll(newFires);
     }
 
     @Override
@@ -61,7 +70,7 @@ public class FiresManager extends EntityManager {
 
 
     @Override
-    public void accept(InterfaceVisitorPaint visitor) {
+    public void acceptPaint(InterfaceVisitorPaint visitor) {
         visitor.visitFires(this);
     }
 
@@ -76,7 +85,7 @@ public class FiresManager extends EntityManager {
     }
 
 
-    public Set<Entity> get_Fires() {
+    public Set<FireEntity> get_Fires() {
         return fires;
     }
 

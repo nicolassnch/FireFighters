@@ -7,9 +7,11 @@ import java.util.Objects;
 public abstract class Entity {
 
     Position position;
+    int internalStep;
 
     public Entity(Position position) {
         this.position = position;
+        internalStep = 1;
     }
 
     public Position getPosition() {
@@ -18,6 +20,14 @@ public abstract class Entity {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public void incrementInternalStep (){
+        this.internalStep +=1;
+    }
+
+    public int getInternalStep() {
+        return internalStep;
     }
 
     public int getPositionCol() {
