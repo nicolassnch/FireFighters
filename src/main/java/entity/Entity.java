@@ -1,6 +1,6 @@
 package entity;
 
-import Util.Position;
+import util.Position;
 
 import java.util.Objects;
 
