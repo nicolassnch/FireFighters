@@ -1,4 +1,4 @@
-import grid.*;
+import fireFighters.gridFireFighters.*;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -28,24 +28,24 @@ public class App extends Application {
         Button switchPause = new Button("Pause");
         VBox buttons = new VBox();
         HBox total = new HBox();
-        Grid grid = new Grid(1000,1000,20,20);
+        GridFireFighters gridFireFighters = new GridFireFighters(1000,1000,20,20);
 
         root.getChildren().add(total);
         total.getChildren().add(buttons);
-        total.getChildren().add(grid);
+        total.getChildren().add(gridFireFighters);
         buttons.getChildren().add(restart);
         buttons.getChildren().add(switchPause);
-        restart.setOnMouseClicked(grid::restart);
+        restart.setOnMouseClicked(gridFireFighters::restart);
         switchPause.setOnMouseClicked((value)->isInPause = !isInPause);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        grid.repaint();
+        gridFireFighters.repaint();
 
         ScheduledThreadPoolExecutor threadPoolExecutor = new ScheduledThreadPoolExecutor(1);
         threadPoolExecutor.scheduleAtFixedRate(() -> {
             if(!isInPause) {
-                grid.getModel().activation();
-                grid.paint();}
+                gridFireFighters.getModel().activation();
+                gridFireFighters.paint();}
         }, 0, 50 , TimeUnit.MILLISECONDS);
     }
 }
