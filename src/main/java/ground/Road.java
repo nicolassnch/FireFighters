@@ -1,15 +1,17 @@
 package ground;
 
-import Util.Position;
+import util.Position;
 import grid.InterfaceVisitorPaint;
 
 public class Road extends GroundAbstract{
 
-    Position position;
 
     public Road(Position position) {
         super(position);
+    }
 
+    public Position getPosition() {
+        return position;
     }
 
 
@@ -17,4 +19,7 @@ public class Road extends GroundAbstract{
     public void accept(InterfaceVisitorPaint visitor) {
         visitor.visitRoad(this);
     }
+
+
+
 }

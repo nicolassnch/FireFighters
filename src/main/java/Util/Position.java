@@ -1,6 +1,4 @@
-package Util;
-
-import grid.Grid;
+package util;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,10 @@
 package ground;
 
 import groundManager.GroundManager;
-import Util.Position;
 import entity.FireEntity;
 import entity.FireFighterEntity;
 
-import java.util.List;
+
 
 public class MontainVisitor implements VisitorGroundInterface{
 
@@ -20,25 +19,12 @@ public class MontainVisitor implements VisitorGroundInterface{
     }
 
     @Override
-    public List<Position> visitorFireFighterEntity(FireFighterEntity fireFighterEntity) {
-        List<Position> nextPossiblePosition = Position.next_Position_Available(fireFighterEntity.getPosition(),colCount,rowCount);
-        nextPossiblePosition.removeIf(nextPossible -> groundManager.getGround().contains(new Montain(new Position(fireFighterEntity.getPositionRow(), fireFighterEntity.getPositionRow() - 1))));
-        nextPossiblePosition.removeIf(nextPossible -> groundManager.getGround().contains(new Montain(new Position(fireFighterEntity.getPositionRow(), fireFighterEntity.getPositionRow() + 1))));
-        nextPossiblePosition.removeIf(nextPossible -> groundManager.getGround().contains(new Montain(new Position(fireFighterEntity.getPositionRow() - 1, fireFighterEntity.getPositionRow()))));
-        nextPossiblePosition.removeIf(nextPossible -> groundManager.getGround().contains(new Montain(new Position(fireFighterEntity.getPositionRow() + 1, fireFighterEntity.getPositionRow()))));
-        return nextPossiblePosition;
+    public Boolean visitorFireFighterEntityPositionDisponnible(FireFighterEntity fireFighterEntity) {
+        return !groundManager.getGround().contains(new Montain(fireFighterEntity.getPosition()));
     }
 
     @Override
-    public List<Position>  visitorFireEntity(FireEntity fireEntity) {
-        List<Position> nextPossiblePosition = Position.next_Position_Available(fireEntity.getPosition(),colCount,rowCount);
-        System.out.println(nextPossiblePosition);
-        nextPossiblePosition.removeIf(nextPossible -> groundManager.getGround().contains(new Montain(new Position(fireEntity.getPositionRow(), fireEntity.getPositionRow() - 1))));
-        nextPossiblePosition.removeIf(nextPossible -> groundManager.getGround().contains(new Montain(new Position(fireEntity.getPositionRow(), fireEntity.getPositionRow() + 1))));
-        nextPossiblePosition.removeIf(nextPossible -> groundManager.getGround().contains(new Montain(new Position(fireEntity.getPositionRow() - 1, fireEntity.getPositionRow()))));
-        nextPossiblePosition.removeIf(nextPossible -> groundManager.getGround().contains(new Montain(new Position(fireEntity.getPositionRow() + 1, fireEntity.getPositionRow()))));
-        System.out.println(groundManager.getGround().toString());
-        System.out.println(nextPossiblePosition+"\n\n");
-        return nextPossiblePosition;
+    public Boolean visitorFireEntityPositionDisponnible(FireEntity fireEntity) {
+        return !groundManager.getGround().contains(new Montain(fireEntity.getPosition()));
     }
 }

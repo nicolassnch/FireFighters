@@ -3,7 +3,7 @@ package groundManager;
 import ground.GroundAbstract;
 import ground.Montain;
 import ground.Road;
-import Util.Position;
+import util.Position;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,20 +20,21 @@ public class GroundManager {
 
     public void initialize(){
         courbeTracerForRoad();
+        montainTracer();
     }
 
     private void courbeTracerForRoad() {
         double latitude = Math.random()*colCount;
-        Double verticalTest = Math.floor(Math.random()*2);
+        double verticalTest = Math.floor(Math.random()*2);
         boolean isVertical = verticalTest == 1;
 
         if (isVertical){
-            for (int i = 0 ; i<=colCount;i++){
+            for (int i = 5 ; i<=colCount-5;i++){
                 ground.add(new Road(new Position((int)latitude,i)));
             }
         }
         else {
-            for (int i = 0 ; i<=colCount;i++){
+            for (int i = 5 ; i<=colCount-5;i++){
                 ground.add(new Road(new Position(i,(int)latitude)));
             }
         }

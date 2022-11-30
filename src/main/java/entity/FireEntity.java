@@ -1,6 +1,10 @@
 package entity;
 
-import Util.Position;
+import util.Position;
+import grid.Grid;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FireEntity extends Entity{
 

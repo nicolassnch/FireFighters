@@ -1,6 +1,6 @@
 package ground;
 
-import Util.Position;
+import util.Position;
 import grid.InterfaceVisitorPaint;
 
 import java.util.Objects;
@@ -19,16 +19,9 @@ public abstract class GroundAbstract {
     public abstract void accept(InterfaceVisitorPaint visitor);
 
     @Override
-    public String toString() {
-        return "GroundAbstract{" +
-                "position=" + position +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof GroundAbstract)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         GroundAbstract that = (GroundAbstract) o;
         return Objects.equals(position, that.position);
     }

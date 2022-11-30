@@ -1,9 +1,10 @@
-package EntittyManager;
+package entittyManager;
 
-import Util.Position;
+import ground.VisitorGroundInterface;
+import util.Position;
 import entity.Entity;
 import grid.InterfaceVisitorPaint;
-import ground.VisitorGroundInterface;
+import grid.VisitorPaint;
 
 import java.util.List;
 
@@ -25,6 +26,6 @@ public abstract class EntityManager {
     public abstract void activate();
     public abstract void initialisation();
     public abstract void accept(InterfaceVisitorPaint visitor);
-    public abstract List<Position> acceptGround(List<VisitorGroundInterface> visitorGroundInterfacesList, Entity entity);
+    public abstract Boolean acceptGround(List<VisitorGroundInterface> visitorGroundInterfacesList, Entity entity);
 
 }

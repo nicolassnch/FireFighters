@@ -1,6 +1,6 @@
 package grid;
 
-import EntittyManager.*;
+import entittyManager.*;
 import ground.MontainVisitor;
 import ground.RoadVisitor;
 import ground.VisitorGroundInterface;

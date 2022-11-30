@@ -2,6 +2,9 @@ package entittyManager;
 
 import ground.VisitorGroundInterface;
 import util.Position;
+import entity.Entity;
+import entity.FireEntity;
+import entity.FireFighterEntity;
 import grid.InterfaceVisitorPaint;
 
 import java.util.*;

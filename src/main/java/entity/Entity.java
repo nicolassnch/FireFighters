@@ -41,4 +41,3 @@ public abstract class Entity {
         return Objects.hash(position);
     }
 }
-

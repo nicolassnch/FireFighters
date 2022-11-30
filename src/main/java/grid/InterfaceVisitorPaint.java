@@ -1,8 +1,8 @@
 package grid;
 
-import EntittyManager.FiresManager;
-import EntittyManager.MotoeizedFireFighterManager;
-import EntittyManager.WalkFireFighterManager;
+import entittyManager.FiresManager;
+import entittyManager.MotoeizedFireFighterManager;
+import entittyManager.WalkFireFighterManager;
 import ground.Montain;
 import ground.Road;
 
