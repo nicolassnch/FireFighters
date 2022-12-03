@@ -1,4 +1,5 @@
 import fireFighters.gridFireFighters.*;
+import generalPackage.Grid.AbstractGrid;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -6,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import rockPaperScissor.grid.Grid;
 
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -28,24 +30,24 @@ public class App extends Application {
         Button switchPause = new Button("Pause");
         VBox buttons = new VBox();
         HBox total = new HBox();
-        GridFireFighters gridFireFighters = new GridFireFighters(1000,1000,20,20);
-
+        //GridFireFighters grid = new GridFireFighters(1000,1000,20,20);
+        Grid grid = new Grid(1000,1000,20,20);
         root.getChildren().add(total);
         total.getChildren().add(buttons);
-        total.getChildren().add(gridFireFighters);
+        total.getChildren().add(grid);
         buttons.getChildren().add(restart);
         buttons.getChildren().add(switchPause);
-        restart.setOnMouseClicked(gridFireFighters::restart);
+        restart.setOnMouseClicked(grid::restart);
         switchPause.setOnMouseClicked((value)->isInPause = !isInPause);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        gridFireFighters.repaint();
+        grid.repaint();
 
         ScheduledThreadPoolExecutor threadPoolExecutor = new ScheduledThreadPoolExecutor(1);
         threadPoolExecutor.scheduleAtFixedRate(() -> {
             if(!isInPause) {
-                gridFireFighters.getModel().activation();
-                gridFireFighters.paint();}
+                grid.getModel().activation();
+                grid.paint();}
         }, 0, 50 , TimeUnit.MILLISECONDS);
     }
 }

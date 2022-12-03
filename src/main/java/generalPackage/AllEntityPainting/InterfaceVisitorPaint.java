@@ -8,6 +8,9 @@ import fireFighters.EntittyManagerFireFighters.WalkFireFighterManager;
 import fireFighters.groundFireFighters.Montain;
 import fireFighters.groundFireFighters.Road;
 import fireFighters.groundFireFighters.Rockery;
+import rockPaperScissor.entityManager.PaperManager;
+import rockPaperScissor.entityManager.RockManager;
+import rockPaperScissor.entityManager.ScissorManager;
 
 public interface InterfaceVisitorPaint {
     void visitFireFighters(WalkFireFighterManager walkFireFighterManager);
@@ -17,5 +20,9 @@ public interface InterfaceVisitorPaint {
     void visitRoad(Montain montain);
     void visitCloud(CloudManager cloudManager);
     void visitRockery(Rockery rockery);
+
+    void visitPaper(PaperManager paperManager);
+    void visitRock(RockManager rockManager);
+    void visitScissor(ScissorManager scissorManager);
 
 }

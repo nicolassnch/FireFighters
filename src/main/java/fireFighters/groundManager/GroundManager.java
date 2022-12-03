@@ -48,7 +48,7 @@ public class GroundManager {
     private void montainTracer(){
         double y;
         double b = (Math.random())*2;
-        for (int i=0 ; i <=20 ;i++){
+        for (int i=5 ; i <=15 ;i++){
             y = i*b;
             ground.add(new Montain(new Position((int) Math.floor(y), (int) Math.floor(i))));
         }
@@ -62,11 +62,6 @@ public class GroundManager {
                 ground.add(new Rockery(position));
             }
         }
-
-        for (int i = 0 ; i < colCount;i++){
-            ground.add(new Rockery(new Position(10,i)));
-        }
-
     }
 
     public Set<GroundAbstract> getGround() {

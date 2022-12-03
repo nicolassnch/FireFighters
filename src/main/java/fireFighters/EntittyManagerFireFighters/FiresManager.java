@@ -33,12 +33,12 @@ public class FiresManager extends EntityManager {
         List<Position> positions = new ArrayList<>();
         Set<FireEntity> newFires = new HashSet<>();
         int moduloStep;
-        for (FireEntity fireEntity : fires){
+        for (FireEntity fireEntity : fires) {
             moduloStep=2;
             if (rockeryVisitor.visitorFireEntityPositionDisponnible(fireEntity)){
                 moduloStep = 4;
             }
-            if (fireEntity.getInternalStep() % 2 == 0 ){
+            if (fireEntity.getInternalStep() % moduloStep == 0 ){
                 positions.addAll(Position.next_Position_Available(fireEntity.getPosition(),colCount,rowCount)); //marche pas bien car normalement c'est le feu qui va arriver//
                 for (Position position : positions) {                                                           // sur les rocaille qui mets 4 tour a ce repandre alors que  //
                     FireEntity newfireEntity = new FireEntity(position);                                        //la c'est un fois dessus que le feu mets 4 tour a ce rependre.//
@@ -47,10 +47,8 @@ public class FiresManager extends EntityManager {
                     }
                 }
             }
-
             fireEntity.incrementInternalStep();
         }
-
         fires.addAll(newFires);
     }
 
@@ -65,7 +63,6 @@ public class FiresManager extends EntityManager {
                     isPosisionate = true;
                 }
             }
-
         }
     }
 

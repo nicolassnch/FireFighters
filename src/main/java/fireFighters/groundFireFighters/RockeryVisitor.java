@@ -17,7 +17,7 @@ public class RockeryVisitor implements VisitorGroundInterface{
 
     @Override
     public Boolean visitorFireFighterEntityPositionDisponnible(FireFighterEntity fireFighterEntity) {
-        return groundManager.getGround().contains(new Rockery(fireFighterEntity.getPosition()));
+        return true;
     }
 
     @Override

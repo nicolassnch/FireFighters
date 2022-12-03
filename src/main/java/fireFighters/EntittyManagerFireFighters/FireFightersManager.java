@@ -14,7 +14,7 @@ public abstract class FireFightersManager extends EntityManager {
     private List<FireFighterEntity> fireFighters = new ArrayList<>();
 
 
-    FiresManager fires;
+    private FiresManager fires;
 
     public FireFightersManager(int numberEntity, double rowCount, double colCount, FiresManager fires,List<VisitorGroundInterface> visitorGroundInterfaceList){
         super(numberEntity,rowCount,colCount,visitorGroundInterfaceList);
@@ -41,6 +41,16 @@ public abstract class FireFightersManager extends EntityManager {
         return position;
     }
 
+    protected Position just_One_Step(Position position) {
+        Position randomPosition = step_Toward_Fire(position);
+        List<Position> nextFires = Position.next_Position_Available(randomPosition,colCount,rowCount);
+        fires.extinguish(fires.contain(randomPosition));
+        for (Position fire : nextFires){
+            fires.extinguish(fires.contain(fire));
+        }
+        return randomPosition;
+    }
+
     protected List<Position> nextPossibleFromFireFighter(Position position){
         List<Position> realPossible = new ArrayList<>();
         List<Position> allNextPossible = new ArrayList<>(Position.next_Position_Available(position,colCount, rowCount));
@@ -53,19 +63,6 @@ public abstract class FireFightersManager extends EntityManager {
         return realPossible;
     }
 
-
-    protected Position just_One_Step(Position position) {
-        Position randomPosition = step_Toward_Fire(position);
-        List<Position> nextFires = Position.next_Position_Available(randomPosition,colCount,rowCount);
-        fires.extinguish(fires.contain(randomPosition));
-        for (Position fire : nextFires){
-            fires.extinguish(fires.contain(fire));
-        }
-        return randomPosition;
-    }
-
-
-
     @Override
     public void activate() {
         for (FireFighterEntity ff : fireFighters) {
@@ -76,7 +73,7 @@ public abstract class FireFightersManager extends EntityManager {
 
     @Override
     public void initialisation() {
-        for (int index = 0; index<= numberEntity ; index++){
+        for (int index = 0; index< numberEntity ; index++){
             fireFighters.add(new FireFighterEntity(Position.randomPosition(colCount,rowCount)));
         }
     }
@@ -90,7 +87,6 @@ public abstract class FireFightersManager extends EntityManager {
         return isAceepted;
 
     }
-
 
     public List<FireFighterEntity> getFireFighters() {
         return fireFighters;

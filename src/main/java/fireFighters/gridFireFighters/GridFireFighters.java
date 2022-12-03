@@ -15,15 +15,15 @@ public class GridFireFighters extends AbstractGrid {
         super(width,height,colCount,rowCount);
         setOnMousePressed(this::mousePressed);
         this.visitorPaint = new VisitorPaint(this);
-        model = new ModelFireFighters(this,4,0,0,0,3);
+        model = new ModelFireFighters(this,5,1,1,3,3);
         model.initialisation();
 
     }
 
     public void restart(MouseEvent mouseEvent){
-        model = new ModelFireFighters(this,4,0,0,0,3);
+        model = new ModelFireFighters(this,5,1,1,3,3);
         model.initialisation();
-        getGraphicsContext2D().clearRect(2,2,width, height);
+        getGraphicsContext2D().clearRect(0,0,width, height);
         repaint();
     }
 

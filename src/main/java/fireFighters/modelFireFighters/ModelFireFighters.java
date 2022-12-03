@@ -48,18 +48,22 @@ public class ModelFireFighters implements InterfaceModel {
 
 
   public void initialisation() {
-    this.groundManager = new GroundManager(rowCount,colCount,rockeryNumber);
+    initialiseGroundManager();
+    initialiseGroundVisitor();
+    initialiseEntityManager();
+  }
 
+  private void initialiseGroundManager(){
+    this.groundManager = new GroundManager(rowCount,colCount,rockeryNumber);  }
+
+  private void initialiseGroundVisitor(){
     this.roadVisitor = new RoadVisitor(groundManager,colCount,rowCount);
     this.montainVisitor = new MontainVisitor(groundManager,colCount,rowCount);
     this.rockeryVisitor = new RockeryVisitor(groundManager,colCount,rowCount);
     visitorGroundInterfaceList.add(roadVisitor);
     visitorGroundInterfaceList.add(montainVisitor);
     groundManager.initialize();
-
-    initialiseEntityManager();
   }
-
 
   private void initialiseEntityManager(){
     entityManagerList.clear();
