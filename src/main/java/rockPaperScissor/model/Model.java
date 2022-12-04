@@ -48,7 +48,6 @@ public class Model implements InterfaceModel {
 
         for (EntityManager entityManager:entityManagerList){
             entityManager.initialisation();
-            System.out.println("bhj");
         }
 
     }

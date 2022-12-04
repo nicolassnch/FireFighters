@@ -35,12 +35,12 @@ public class FiresManager extends EntityManager implements AcceptGround{
         int moduloStep;
         for (FireEntity fireEntity : fires) {
             moduloStep=2;
-            if (rockeryVisitor.visitorFireEntityPositionDisponnible(fireEntity)){
+            if (rockeryVisitor.visitorFireEntityPositionDisponnible(fireEntity)){                 //sorte de accept Mais seulement pour vérifier si la case actuelle est une rocaille.
                 moduloStep = 4;
             }
             if (fireEntity.getInternalStep() % moduloStep == 0 ){
                 positions.addAll(Position.next_Position_Available(fireEntity.getPosition(),colCount,rowCount)); //marche pas bien car normalement c'est le feu qui va arriver//
-                for (Position position : positions) {                                                           // sur les rocaille qui mets 4 tour a ce repandre alors que  //
+                for (Position position : positions) {                                                           // sur les rocaille qui mets 4 tour a ce répandre alors que  //
                     FireEntity newfireEntity = new FireEntity(position);                                        //la c'est un fois dessus que le feu mets 4 tour a ce rependre.//
                     if (acceptGround(visitorGroundInterfacesList,newfireEntity)) {
                         newFires.add(newfireEntity);
