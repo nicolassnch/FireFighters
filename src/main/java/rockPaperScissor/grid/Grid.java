@@ -1,6 +1,5 @@
 package rockPaperScissor.grid;
 
-import fireFighters.modelFireFighters.ModelFireFighters;
 import generalPackage.AllEntityPainting.VisitorPaint;
 import generalPackage.Grid.AbstractGrid;
 import generalPackage.entityManager.EntityManager;

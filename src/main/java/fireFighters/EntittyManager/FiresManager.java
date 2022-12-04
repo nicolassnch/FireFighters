@@ -1,11 +1,11 @@
-package fireFighters.EntittyManagerFireFighters;
+package fireFighters.EntittyManager;
 
-import fireFighters.groundFireFighters.RockeryVisitor;
-import fireFighters.groundFireFighters.VisitorGroundInterface;
+import fireFighters.ground.RockeryVisitor;
+import fireFighters.ground.VisitorGroundInterface;
 import generalPackage.entityManager.EntityManager;
 import util.Position;
 import generalPackage.entity.Entity;
-import fireFighters.entityFireFighter.FireEntity;
+import fireFighters.entity.FireEntity;
 import generalPackage.AllEntityPainting.InterfaceVisitorPaint;
 
 import java.util.*;

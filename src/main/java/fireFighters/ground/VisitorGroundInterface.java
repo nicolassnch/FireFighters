@@ -1,7 +1,7 @@
-package fireFighters.groundFireFighters;
+package fireFighters.ground;
 
-import fireFighters.entityFireFighter.FireEntity;
-import fireFighters.entityFireFighter.FireFighterEntity;
+import fireFighters.entity.FireEntity;
+import fireFighters.entity.FireFighterEntity;
 
 public interface VisitorGroundInterface {
     Boolean visitorFireFighterEntityPositionDisponnible(FireFighterEntity fireFighterEntity);

@@ -1,8 +1,8 @@
 package fireFighters.groundManager;
 
-import fireFighters.groundFireFighters.Montain;
-import fireFighters.groundFireFighters.Road;
-import fireFighters.groundFireFighters.Rockery;
+import fireFighters.ground.Montain;
+import fireFighters.ground.Road;
+import fireFighters.ground.Rockery;
 import generalPackage.ground.GroundAbstract;
 import util.Position;
 

@@ -1,6 +1,6 @@
-package fireFighters.gridFireFighters;
+package fireFighters.grid;
 
-import fireFighters.modelFireFighters.ModelFireFighters;
+import fireFighters.model.ModelFireFighters;
 import generalPackage.AllEntityPainting.VisitorPaint;
 import generalPackage.Grid.AbstractGrid;
 import generalPackage.entityManager.EntityManager;

@@ -1,10 +1,10 @@
-package fireFighters.EntittyManagerFireFighters;
+package fireFighters.EntittyManager;
 
-import fireFighters.entityFireFighter.CloudEntity;
+import fireFighters.entity.CloudEntity;
 import generalPackage.entity.Entity;
 import generalPackage.entityManager.EntityManager;
 import generalPackage.AllEntityPainting.InterfaceVisitorPaint;
-import fireFighters.groundFireFighters.VisitorGroundInterface;
+import fireFighters.ground.VisitorGroundInterface;
 import util.Position;
 
 import java.util.ArrayList;

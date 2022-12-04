@@ -1,30 +1,30 @@
-package fireFighters.groundFireFighters;
+package fireFighters.ground;
 
 import fireFighters.groundManager.GroundManager;
-import fireFighters.entityFireFighter.FireEntity;
-import fireFighters.entityFireFighter.FireFighterEntity;
+import fireFighters.entity.FireEntity;
+import fireFighters.entity.FireFighterEntity;
 
 
-public class RoadVisitor implements VisitorGroundInterface{
+
+public class MontainVisitor implements VisitorGroundInterface{
+
     private GroundManager groundManager;
     private double colCount;
     private double rowCount;
 
-
-    public RoadVisitor(GroundManager groundManager, double colCount, double rowCount) {
+    public MontainVisitor(GroundManager groundManager, double colCount, double rowCount) {
         this.groundManager = groundManager;
         this.colCount = colCount;
         this.rowCount = rowCount;
     }
 
-
     @Override
     public Boolean visitorFireFighterEntityPositionDisponnible(FireFighterEntity fireFighterEntity) {
-        return true;
+        return !groundManager.getGround().contains(new Montain(fireFighterEntity.getPosition()));
     }
 
     @Override
     public Boolean visitorFireEntityPositionDisponnible(FireEntity fireEntity) {
-        return !groundManager.getGround().contains(new Road(fireEntity.getPosition()));
+        return !groundManager.getGround().contains(new Montain(fireEntity.getPosition()));
     }
 }

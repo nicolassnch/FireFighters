@@ -1,19 +1,22 @@
-package fireFighters.groundFireFighters;
+package fireFighters.ground;
 
-import fireFighters.entityFireFighter.FireEntity;
-import fireFighters.entityFireFighter.FireFighterEntity;
 import fireFighters.groundManager.GroundManager;
+import fireFighters.entity.FireEntity;
+import fireFighters.entity.FireFighterEntity;
 
-public class RockeryVisitor implements VisitorGroundInterface{
+
+public class RoadVisitor implements VisitorGroundInterface{
     private GroundManager groundManager;
     private double colCount;
     private double rowCount;
 
-    public RockeryVisitor(GroundManager groundManager, double colCount, double rowCount) {
+
+    public RoadVisitor(GroundManager groundManager, double colCount, double rowCount) {
         this.groundManager = groundManager;
         this.colCount = colCount;
         this.rowCount = rowCount;
     }
+
 
     @Override
     public Boolean visitorFireFighterEntityPositionDisponnible(FireFighterEntity fireFighterEntity) {
@@ -22,6 +25,6 @@ public class RockeryVisitor implements VisitorGroundInterface{
 
     @Override
     public Boolean visitorFireEntityPositionDisponnible(FireEntity fireEntity) {
-        return groundManager.getGround().contains(new Rockery(fireEntity.getPosition()));
+        return !groundManager.getGround().contains(new Road(fireEntity.getPosition()));
     }
 }

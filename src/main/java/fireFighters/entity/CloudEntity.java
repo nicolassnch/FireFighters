@@ -1,4 +1,4 @@
-package fireFighters.entityFireFighter;
+package fireFighters.entity;
 
 import generalPackage.entity.Entity;
 import util.Position;

@@ -1,8 +1,8 @@
 package generalPackage.AllEntityPainting;
 
-import fireFighters.EntittyManagerFireFighters.*;
-import fireFighters.entityFireFighter.FireFighterEntity;
-import fireFighters.groundFireFighters.*;
+import fireFighters.EntittyManager.*;
+import fireFighters.entity.FireFighterEntity;
+import fireFighters.ground.*;
 import generalPackage.Grid.AbstractGrid;
 import generalPackage.entity.Entity;
 import javafx.scene.paint.Color;

@@ -1,16 +1,14 @@
-package fireFighters.groundFireFighters;
+package fireFighters.ground;
 
 import generalPackage.ground.GroundAbstract;
 import util.Position;
 import generalPackage.AllEntityPainting.InterfaceVisitorPaint;
 
+public class Road extends GroundAbstract {
 
-public class Montain extends GroundAbstract {
 
-
-    public Montain(Position position) {
+    public Road(Position position) {
         super(position);
-
     }
 
     public Position getPosition() {
@@ -18,11 +16,11 @@ public class Montain extends GroundAbstract {
     }
 
 
-
     @Override
     public void accept(InterfaceVisitorPaint visitor) {
         visitor.visitRoad(this);
     }
+
 
 
 }

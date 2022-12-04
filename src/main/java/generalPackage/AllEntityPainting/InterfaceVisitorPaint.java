@@ -1,13 +1,13 @@
 package generalPackage.AllEntityPainting;
 
 
-import fireFighters.EntittyManagerFireFighters.CloudManager;
-import fireFighters.EntittyManagerFireFighters.FiresManager;
-import fireFighters.EntittyManagerFireFighters.MotoeizedFireFighterManager;
-import fireFighters.EntittyManagerFireFighters.WalkFireFighterManager;
-import fireFighters.groundFireFighters.Montain;
-import fireFighters.groundFireFighters.Road;
-import fireFighters.groundFireFighters.Rockery;
+import fireFighters.EntittyManager.CloudManager;
+import fireFighters.EntittyManager.FiresManager;
+import fireFighters.EntittyManager.MotoeizedFireFighterManager;
+import fireFighters.EntittyManager.WalkFireFighterManager;
+import fireFighters.ground.Montain;
+import fireFighters.ground.Road;
+import fireFighters.ground.Rockery;
 import rockPaperScissor.entityManager.PaperManager;
 import rockPaperScissor.entityManager.RockManager;
 import rockPaperScissor.entityManager.ScissorManager;

@@ -1,18 +1,15 @@
-package fireFighters.groundFireFighters;
+package fireFighters.ground;
 
+import fireFighters.entity.FireEntity;
+import fireFighters.entity.FireFighterEntity;
 import fireFighters.groundManager.GroundManager;
-import fireFighters.entityFireFighter.FireEntity;
-import fireFighters.entityFireFighter.FireFighterEntity;
 
-
-
-public class MontainVisitor implements VisitorGroundInterface{
-
+public class RockeryVisitor implements VisitorGroundInterface{
     private GroundManager groundManager;
     private double colCount;
     private double rowCount;
 
-    public MontainVisitor(GroundManager groundManager, double colCount, double rowCount) {
+    public RockeryVisitor(GroundManager groundManager, double colCount, double rowCount) {
         this.groundManager = groundManager;
         this.colCount = colCount;
         this.rowCount = rowCount;
@@ -20,11 +17,11 @@ public class MontainVisitor implements VisitorGroundInterface{
 
     @Override
     public Boolean visitorFireFighterEntityPositionDisponnible(FireFighterEntity fireFighterEntity) {
-        return !groundManager.getGround().contains(new Montain(fireFighterEntity.getPosition()));
+        return true;
     }
 
     @Override
     public Boolean visitorFireEntityPositionDisponnible(FireEntity fireEntity) {
-        return !groundManager.getGround().contains(new Montain(fireEntity.getPosition()));
+        return groundManager.getGround().contains(new Rockery(fireEntity.getPosition()));
     }
 }

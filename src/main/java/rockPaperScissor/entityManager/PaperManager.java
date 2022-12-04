@@ -1,6 +1,6 @@
 package rockPaperScissor.entityManager;
 
-import fireFighters.groundFireFighters.VisitorGroundInterface;
+import fireFighters.ground.VisitorGroundInterface;
 import generalPackage.AllEntityPainting.InterfaceVisitorPaint;
 import generalPackage.entity.Entity;
 import generalPackage.entityManager.EntityManager;
@@ -8,7 +8,6 @@ import rockPaperScissor.entity.PaperEntity;
 import rockPaperScissor.entity.RockEntity;
 import util.Position;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

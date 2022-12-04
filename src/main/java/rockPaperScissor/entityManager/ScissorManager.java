@@ -1,11 +1,10 @@
 package rockPaperScissor.entityManager;
 
-import fireFighters.groundFireFighters.VisitorGroundInterface;
+import fireFighters.ground.VisitorGroundInterface;
 import generalPackage.AllEntityPainting.InterfaceVisitorPaint;
 import generalPackage.entity.Entity;
 import generalPackage.entityManager.EntityManager;
 import rockPaperScissor.entity.PaperEntity;
-import rockPaperScissor.entity.RockEntity;
 import rockPaperScissor.entity.ScissorEntity;
 import util.Position;
 

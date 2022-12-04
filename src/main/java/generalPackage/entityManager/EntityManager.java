@@ -1,6 +1,6 @@
 package generalPackage.entityManager;
 
-import fireFighters.groundFireFighters.VisitorGroundInterface;
+import fireFighters.ground.VisitorGroundInterface;
 import generalPackage.entity.Entity;
 import generalPackage.AllEntityPainting.InterfaceVisitorPaint;
 

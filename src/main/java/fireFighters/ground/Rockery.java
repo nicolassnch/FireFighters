@@ -1,4 +1,4 @@
-package fireFighters.groundFireFighters;
+package fireFighters.ground;
 
 import generalPackage.ground.GroundAbstract;
 import generalPackage.AllEntityPainting.InterfaceVisitorPaint;

@@ -1,9 +1,9 @@
-package fireFighters.modelFireFighters;
+package fireFighters.model;
 
 
-import fireFighters.EntittyManagerFireFighters.*;
-import fireFighters.gridFireFighters.GridFireFighters;
-import fireFighters.groundFireFighters.*;
+import fireFighters.EntittyManager.*;
+import fireFighters.grid.GridFireFighters;
+import fireFighters.ground.*;
 import fireFighters.groundManager.GroundManager;
 import generalPackage.entityManager.EntityManager;
 import generalPackage.model.InterfaceModel;
