@@ -59,10 +59,6 @@ public class PaperManager extends EntityManager {
         visitor.visitPaper(this);
     }
 
-    @Override
-    public Boolean acceptGround(List<VisitorGroundInterface> visitorGroundInterfacesList, Entity entity) {
-        return null;
-    }
 
     public Set<PaperEntity> getPapersSet() {
         return papersSet;

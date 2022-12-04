@@ -10,7 +10,7 @@ import generalPackage.AllEntityPainting.InterfaceVisitorPaint;
 
 import java.util.*;
 
-public class FiresManager extends EntityManager {
+public class FiresManager extends EntityManager implements AcceptGround{
     private Set<FireEntity> fires = new HashSet<>();
     private RockeryVisitor rockeryVisitor;
 

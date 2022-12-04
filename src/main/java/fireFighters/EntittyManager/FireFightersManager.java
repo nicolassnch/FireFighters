@@ -8,7 +8,7 @@ import fireFighters.entity.FireFighterEntity;
 
 import java.util.*;
 
-public abstract class FireFightersManager extends EntityManager {
+public abstract class FireFightersManager extends EntityManager implements AcceptGround{
 
 
     private List<FireFighterEntity> fireFighters = new ArrayList<>();

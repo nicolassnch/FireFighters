@@ -64,10 +64,6 @@ public class ScissorManager extends EntityManager {
         visitor.visitScissor(this);
     }
 
-    @Override
-    public Boolean acceptGround(List<VisitorGroundInterface> visitorGroundInterfacesList, Entity entity) {
-        return null;
-    }
 
     public Set<ScissorEntity> getScissorSet() {
         return scissorSet;

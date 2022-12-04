@@ -29,6 +29,5 @@ public abstract class EntityManager {
     public abstract void activate();
     public abstract void initialisation();
     public abstract void acceptPaint(InterfaceVisitorPaint visitor);
-    public abstract Boolean acceptGround(List<VisitorGroundInterface> visitorGroundInterfacesList, Entity entity);
 
 }

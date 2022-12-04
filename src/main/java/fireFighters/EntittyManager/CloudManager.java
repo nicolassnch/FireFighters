@@ -43,10 +43,6 @@ public class CloudManager extends EntityManager {
         visitor.visitCloud(this);
     }
 
-    @Override
-    public Boolean acceptGround(List<VisitorGroundInterface> visitorGroundInterfacesList, Entity entity) {
-        return null;
-    }
 
     public List<CloudEntity> getCloudList() {
         return cloudList;

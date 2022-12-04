@@ -64,10 +64,7 @@ public class RockManager extends EntityManager {
         visitor.visitRock(this);
     }
 
-    @Override
-    public Boolean acceptGround(List<VisitorGroundInterface> visitorGroundInterfacesList, Entity entity) {
-        return null;
-    }
+
 
     public Set<RockEntity> getRockSet() {
         return rockSet;

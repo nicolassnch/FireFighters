@@ -6,7 +6,7 @@ import generalPackage.AllEntityPainting.InterfaceVisitorPaint;
 
 import java.util.*;
 
-public class MotoeizedFireFighterManager extends FireFightersManager {
+public class MotoeizedFireFighterManager extends FireFightersManager implements AcceptGround{
 
 
     public MotoeizedFireFighterManager(int numberEntity, double rowCount, double colCount, FiresManager fires,List<VisitorGroundInterface> visitorGroundInterfaceList) {
