@@ -1,26 +1,64 @@
-#**Projet Programmation et Conception**
-***
-#### **Membres du Groupe :** SANCHEZ Nicolas et FATEH Nacer
-***
-Pour modifier quelle app lancer entre FireFighter et PaperScissorRock il faut changer la ligne en commentaire avec elle du dessus.
-***
-### **Explication**
-****
-**Patron de conception utilisés**
-* **Visitor :** On utilise deux fois Visitor Pour `InterfaceVisitorPaint` qui visit les Entités pour les peindre, et
-`VisitorGroundInterface` qui implemente `RockeryVisitor`, `RoadVisitor`, `MontanVisitor` celle-ci visite les Entité pour savoir si elle est accepté par la case.
-interface en plus `AcceptGround` permet d'implementer dans les manager la methode qui accepte les visitor et donc de savoir si une case est accepté ou non.
-* **Template Methode :** On utilise template Methode 4 fois dans le code pour `Entity`,`EntityManger`,`AbstractGrid`,`GroundAbstract`, celle-ci permette de ne pas dupliquer le code mais peuvent aussi etre remplacer par
-des Interface pour Utiliser Strategy. Elle est implementer Respectivement par les `Entity`, les `EntityManger`, les `Grid`, le `GroundManager`.
-* **Strategy :** On Utilise Strategy Pour implementer les Model et donc Pour pouvoir changer de model facilement.
+<br/>
+<p align="center">
+  <a href="https://github.com/ycncy/FireFighters">
+    <img src="https://png.pngtree.com/png-clipart/20211031/original/pngtree-cute-handdraw-cartoon-fireman-illustrations-png-image_6894191.png" alt="Logo" width="80" height="80">
+  </a>
 
-**Structure**
+  <h3 align="center">Fire Fighters</h3>
+
+</p>
+
+
+
+## À propos du projet
+
+Le but de ce projet est d'implémenter un proto-simulateur d'automate cellulaire. À chaque tour, chaque pompier éteindra soit tous les feux autour de lui soit se dirigera vers le feu le plus proche et éteindra ensuite le feu autour de lui. Le feu de son côté s'étendra autour de lui tous les deux tours. Le but est de voir en combien de tours les pompiers arriveront à éteindre le feu.
+
+<strong>Le but principal de ce projet est de rendre du code qui respecte les principes SOLID.</strong>
+
+## Les tâches à réaliser à partir de la base du projet
+
+- <strong>Tâche 1 : </strong><br>Ce modèle devra être étendu avec les fonctionnalités supplémentaires :
+   - Des nuages qui se déplacent aléatoirement et qui éteignent les feux.
+   - Des pompiers motorisés qui peuvent se déplacer de deux cases.
+   - Des cases montagnes qui en sont pas franchissable par le feu ni par les pompiers.
+   - Des cases routes qui ne sont franchissables que par les pompiers.
+   - Des cases rocailles sur lesquelles le feu mets quatre tours à se propager.
+<br><br>
+- <strong>Tâche 2 : </strong><br>Implémenter un autre modèle de votre choix avec de nouvelles règles, mais que vous
+garderez simples :
+   - Pierre-feuille-ciseau : si un élément pierre atteint une case avec un ciseau, le ciseau est détruit etc... le premier type à éliminer toutes ses cibles gagne.
+
+## Description du code
+**Il y a trois packages dans le projet :**
+* `generalPackage` : Correspond aux classes "générales", notre but était de créer une structure
+**Model/Vue/Controller** qui pourra être utilisé pour n'importe quel modèle d'automate cellulaire. Ainsi
+ce package contient : essentiellement des classes abstraites ou des interfaces qui pourront être étendues
+ou implémentées pour chaque modèle, les classes concrètes `Model`, `Position` et `App` et le 
+package de l'implémentation du patron de conception `Visitor` pour peindre les cases. La classe
+`Grid` est abstraite pour pouvoir effectuer des initialisations différentes en fonction de chaque nouveau modèle.
+
   
-* **generalPackage :** ce package contient les classe général, il Permet d'implementer le necessaire a la creation d'une autre App. Il contient Le Visitor et sont implementation pour peindre chaque entité de n'importe quelle App
-L'implementation des Entités et des Manager, de La grid, du Ground et du Model.
-* **fireFighters et RockPaperScissor :** c'est deux Package implement respectivement la tache 1 et 2 du Projet a l'aide du package general, chaque classe étende ou implemente une classe de ce package.
+* `fireFighters` et `RockPaperScissors` : Correspondent respectivement à l'implémentation de la tâche 1 et 
+de la tâche 2 du projet, ces packages contiennent toutes les classes concrètes qui étendent ou implémentes les
+classes et les interface de la structure générale.
 
-**Commentaire :** 
+**Patrons de conception utilisés :**
+* **Visitor :** Utilisant l'interface `PaintingVisitor` et `ConcretePaintingVisitor` pour dessiner les entités sur la grille.
+Et une deuxième implémentation avec l'interface `ObstacleVisitor` pour vérifier si une `Entity` peut ou non se déplacer vers
+une case, toutes les `Entity` implémentent l'interface `ObstacleVisitor`.
 
-Je pense quoin a fait ce qu'on pouvait pour respecter au maximum les Principe Solide meme si certain changement sont encore possible pour améliorer le code et le rendre plus SOLIDE comme l'implementation de grid et de Model qui pourrait être mieux faite et donc au lieux d'implementé les deux pour crée
-une nouvelle App nous aurons seulement la grid ou le Model a Implementer.
+
+* **Template Method :** Utilisant la classe `Grid` et ses classes filles `FireFightersGrid` et `RpsGrid`.
+
+
+* **Strategy :** Utilisé par `Model`, on délègue l'initialisation et l'actualisation des entités et des obstacles à
+deux interfaces correspondant à deux implémentations de Strategy : `ObstacleManager` et `EntityManager`.
+****
+
+## Langage et outil utilisés
+
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
+
+💻 IDE : <br>
+![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
