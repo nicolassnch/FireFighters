@@ -1,12 +1,4 @@
-<br/>
-<p align="center">
-  <a href="https://github.com/ycncy/FireFighters">
-    <img src="https://png.pngtree.com/png-clipart/20211031/original/pngtree-cute-handdraw-cartoon-fireman-illustrations-png-image_6894191.png" alt="Logo" width="80" height="80">
-  </a>
 
-  <h3 align="center">Fire Fighters</h3>
-
-</p>
 
 
 
